@@ -1,0 +1,241 @@
+{
+    "columnsMeta": [
+        {
+            "dimensionId": 0,
+            "name": "Country name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        },
+        {
+            "dimensionId": 1,
+            "name": "Brand name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        }
+    ],
+    "rowsMeta": [
+        {
+            "dimensionId": 0,
+            "name": "District name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        },
+        {
+            "dimensionId": 1,
+            "name": "Region name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        },
+        {
+            "dimensionId": 2,
+            "name": "City name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        }
+    ],
+    "measureMetas": [
+        {
+            "measureId": 0,
+            "name": "Metric 1",
+            "alias": "",
+            "aggType": "sum",
+            "type": "number"
+        }
+    ],
+    "dimensionData": {
+        "columnsLevelCount": 2,
+        "rowsLevelCount": 3,
+        "columnsCount": 3,
+        "rowsCount": 9,
+        "columns": [
+            {
+                "dimensionId": 0,
+                "coordinate": 0,
+                "dimensionValue": "Италия",
+                "columnsChild":[
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Бренд 2",
+                        "columnsChild": null
+                    }
+                  ]
+            },
+            {
+                "dimensionId": 0,
+                "coordinate": 1,
+                "dimensionValue": "Россия",
+                "columnsChild":[
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Бренд 1",
+                        "columnsChild": null
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Бренд 3",
+                        "columnsChild": null
+                    }
+                  ]
+            }
+        ],
+        "rows": [
+            {
+                "dimensionId": 0,
+                "coordinate": 0,
+                "dimensionValue": "Дальневосточный федеральный округ",
+                "rowsChild": [
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Амурская область",
+                        "rowsChild": [
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 0,
+                                "dimensionValue": "Благовещенск",
+                                "rowsChild": null
+                            },
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 1,
+                                "dimensionValue": "Белогорск",
+                                "rowsChild": null
+                            }
+                        ]
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Еврейская область",
+                        "rowsChild": [
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 0,
+                                "dimensionValue": "Биробиджан",
+                                "rowsChild": null
+                            },
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 1,
+                                "dimensionValue": "Облучье",
+                                "rowsChild": null
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "dimensionId": 0,
+                "coordinate": 1,
+                "dimensionValue": "Приволжский федеральный округ",
+                "rowsChild": [
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Кировская область",
+                        "rowsChild": [
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 0,
+                                "dimensionValue": "Киров",
+                                "rowsChild": null
+                            },
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 1,
+                                "dimensionValue": "Орлов",
+                                "rowsChild": null
+                            }
+                        ]
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Нижегордская область",
+                        "rowsChild": [
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 0,
+                                "dimensionValue": "Бор",
+                                "rowsChild": null
+                            },
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 1,
+                                "dimensionValue": "Арзамас",
+                                "rowsChild": null
+                            },
+                            {
+                                "dimensionId": 2,
+                                "coordinate": 2,
+                                "dimensionValue": "Нижний Новгород",
+                                "rowsChild": null
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "measuresData": [
+        {
+            "measureId": 0,
+            "measureValues": [
+                [
+                    1,
+                    2,
+                    3
+                ],
+                [
+                    4,
+                    5,
+                    6
+                ],
+                [
+                    7,
+                    8,
+                    9
+                ],
+                [
+                    10,
+                    11,
+                    12
+                ],
+                [
+                    13,
+                    14,
+                    15
+                ],
+                [
+                    16,
+                    17,
+                    18
+                ],
+                [
+                    19,
+                    20,
+                    21
+                ],
+                [
+                    22,
+                    23,
+                    24
+                ],
+                [
+                    25,
+                    26,
+                    27
+                ]
+            ]
+        }
+
+    ]
+}

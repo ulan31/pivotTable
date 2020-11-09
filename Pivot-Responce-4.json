@@ -1,0 +1,133 @@
+{
+    "columnsMeta": [
+        {
+            "dimensionId": 0,
+            "name": "Country name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        }
+    ],
+    "rowsMeta": [
+        {
+            "dimensionId": 0,
+            "name": "District name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        },
+        {
+            "dimensionId": 1,
+            "name": "Region name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        }
+    ],
+    "measureMetas": [
+        {
+            "measureId": 0,
+            "name": "Metric 1",
+            "alias": "",
+            "aggType": "sum",
+            "type": "number"
+        },
+        {
+            "measureId": 1,
+            "name": "Metric 2",
+            "alias": "",
+            "aggType": "sum",
+            "type": "number"
+        }
+    ],
+    "dimensionData": {
+        "columnsLevelCount": 1,
+        "rowsLevelCount": 2,
+        "columnsCount": 2,
+        "rowsCount": 3,
+        "columns": [
+            {
+                "dimensionId": 0,
+                "coordinate": 0,
+                "dimensionValue": "Италия",
+                "columnsChild": null
+            },
+            {
+                "dimensionId": 0,
+                "coordinate": 1,
+                "dimensionValue": "Россия",
+                "columnsChild": null
+            }
+        ],
+        "rows": [
+            {
+                "dimensionId": 0,
+                "coordinate": 0,
+                "dimensionValue": "Дальневосточный федеральный округ",
+                "rowsChild": [
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Амурская область",
+                        "rowsChild": null
+                    }
+                ]
+            },
+            {
+                "dimensionId": 0,
+                "coordinate": 1,
+                "dimensionValue": "Приволжский федеральный округ",
+                "rowsChild": [
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Кировская область",
+                        "rowsChild": null
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Нижегордская область",
+                        "rowsChild": null
+                    }
+                ]
+            }
+        ]
+    },
+    "measuresData": [
+        {
+            "measureId": 0,
+            "measureValues": [
+                [
+                    3,
+                    8
+                ],
+                [
+                    5,
+                    6
+                ],
+                [
+                    7,
+                    89
+                ]
+            ]
+        },
+        {
+            "measureId": 1,
+            "measureValues": [
+                [
+                    30,
+                    40
+                ],
+                [
+                    60,
+                    60
+                ],
+                [
+                    73,
+                    64
+                ]
+            ]
+        }
+    ]
+}

@@ -1,0 +1,190 @@
+{
+    "columnsMeta": [
+        {
+            "dimensionId": 0,
+            "name": "Country name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        },
+        {
+            "dimensionId": 1,
+            "name": "Brand name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        }
+    ],
+    "rowsMeta": [
+        {
+            "dimensionId": 0,
+            "name": "District name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        },
+        {
+            "dimensionId": 1,
+            "name": "Region name",
+            "aliasName": "",
+            "type": "string",
+            "hierarchy": null
+        }
+    ],
+    "measureMetas": [
+        {
+            "measureId": 0,
+            "name": "Metric 1",
+            "alias": "",
+            "aggType": "sum",
+            "type": "number"
+        },
+        {
+            "measureId": 1,
+            "name": "Metric 2",
+            "alias": "",
+            "aggType": "sum",
+            "type": "number"
+        }
+    ],
+    "dimensionData": {
+        "columnsLevelCount": 2,
+        "rowsLevelCount": 2,
+        "columnsCount": 5,
+        "rowsCount": 3,
+        "columns": [
+            {
+                "dimensionId": 0,
+                "coordinate": 0,
+                "dimensionValue": "Италия",
+                "columnsChild":[
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Бренд 2",
+                        "columnsChild": null
+                    }
+                  ]
+            },
+            {
+                "dimensionId": 0,
+                "coordinate": 1,
+                "dimensionValue": "Россия",
+                "columnsChild":[
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Бренд 1",
+                        "columnsChild": null
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Бренд 3",
+                        "columnsChild": null
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Бренд 4",
+                        "columnsChild": null
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Бренд 5",
+                        "columnsChild": null
+                    }
+                  ]
+            }
+        ],
+        "rows": [
+            {
+                "dimensionId": 0,
+                "coordinate": 0,
+                "dimensionValue": "Дальневосточный федеральный округ",
+                "rowsChild": [
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Амурская область",
+                        "rowsChild": null
+                    }
+                ]
+            },
+            {
+                "dimensionId": 0,
+                "coordinate": 1,
+                "dimensionValues": "Приволжский федеральный округ",
+                "rowsChild": [
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 0,
+                        "dimensionValue": "Кировская область",
+                        "rowsChild": null
+                    },
+                    {
+                        "dimensionId": 1,
+                        "coordinate": 1,
+                        "dimensionValue": "Нижегордская область",
+                        "rowsChild": null
+                    }
+                ]
+            }
+        ]
+    },
+    "measuresData": [
+        {
+            "measureId": 0,
+            "measureValues": [
+                [
+                    3,
+                    8,
+                    9,
+                    10,
+                    100
+                ],
+                [
+                    5,
+                    6,
+                    8,
+                    11,
+                    101
+                ],
+                [
+                    7,
+                    89,
+                    90,
+                    12,
+                    102
+                ]
+            ]
+        },
+        {
+            "measureId": 1,
+            "measureValues": [
+                [
+                    30,
+                    40,
+                    50,
+                    51,
+                    52
+                ],
+                [
+                    60,
+                    60,
+                    80,
+                    81,
+                    82
+                ],
+                [
+                    73,
+                    64,
+                    85,
+                    91,
+                    93
+                ]
+            ]
+        }
+    ]
+}
