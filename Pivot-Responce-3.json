@@ -115,7 +115,7 @@
             {
                 "dimensionId": 0,
                 "coordinate": 1,
-                "dimensionValues": "Приволжский федеральный округ",
+                "dimensionValue": "Приволжский федеральный округ",
                 "rowsChild": [
                     {
                         "dimensionId": 1,

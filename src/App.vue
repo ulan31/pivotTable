@@ -1,21 +1,42 @@
 <template>
   <div id="app">
     <div class="header">
-      <div class="countryName">
-        <div  class="row">Country Name</div>
-        <template v-if="countryName[0]">
-          <div v-for="item in countryName[0]">
-            <div :style="{width: item.lengthChild > 0 ? item.lengthChild *300 + 'px' : 300 + 'px' }" class="row">{{item.name}}</div>
-          </div>
-        </template>
+      <div v-if="countryName[0].length > 0" class="countryName">
+        <div class="row">Country Name</div>
+        <div v-for="item in countryName[0]">
+          <div :style="{width: item.lengthChild > 0 ? item.lengthChild *300 + 'px' : 300 + 'px' }" class="row">{{item.name}}</div>
+        </div>
       </div>
       <div v-if="countryName[1].length > 0" class="brandName">
         <div class="row">Brand name</div>
-        <template>
-          <div v-for="item in countryName[1]">
-            <div class="row">{{item.name}}</div>
+        <div v-for="item in countryName[1]">
+          <div class="row">{{item.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="body">
+      <div  class="block-1">
+        <div v-if="districtRegionName[0].length > 0" :style="{width: districtRegionName[2].length > 0 ? 100 + 'px' : 150 + 'px' }" class="districtName">
+          <div class="disReg">District Name</div>
+          <div v-for="dist in districtRegionName[0]">
+            <div v-if="districtRegionName[2].length > 0" :style="{height: dist.lengthChild > 0 ? dist.lengthChild *80 + 'px' : 80 + 'px' }" class="disReg">{{dist.name}}</div>
+            <div v-else :style="{height: dist.lengthChild > 0 ? dist.lengthChild *40 + 'px' : 40 + 'px' }" class="disReg">{{dist.name}}</div>
+
           </div>
-        </template>
+        </div>
+        <div :style="{width: districtRegionName[2].length > 0 ? 100 + 'px' : 150 + 'px' }" v-if="districtRegionName[1].length > 0" class="regionName">
+          <div class="disReg">Region Name</div>
+          <div v-for="region in districtRegionName[1]">
+            <div v-if="districtRegionName[2].length > 0" :style="{height: region.lengthChild > 0 ? region.lengthChild *40 + 'px' : 40 + 'px' }" class="disReg">{{region.name}}</div>
+            <div v-else class="disReg">{{region.name}}</div>
+          </div>
+        </div>
+        <div :style="{width: districtRegionName[2].length > 0 ? 100 + 'px' : 150 + 'px' }" v-if="districtRegionName[2].length > 0" class="regionName">
+          <div class="disReg">City Name</div>
+          <div v-for="city in districtRegionName[2]">
+            <div class="disReg">{{city.name}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -137,7 +158,7 @@ export default {
            {
              "dimensionId": 0,
              "coordinate": 1,
-             "dimensionValues": "Приволжский федеральный округ",
+             "dimensionValue": "Приволжский федеральный округ",
              "rowsChild": [
                {
                  "dimensionId": 1,
@@ -224,19 +245,55 @@ export default {
           for(let brand of item.columnsChild) {
             brandName.push({
               'name': brand.dimensionValue,
-
             })
           }
         }
       }
-      console.log(countryName)
-      console.log(brandName)
+      // console.log(countryName)
+      // console.log(brandName)
       const result = [
         countryName,
         brandName
       ]
       return result
     }
+   },
+   districtRegionName() {
+     if(this.data.dimensionData && this.data.dimensionData.rows) {
+       const districtName = [];
+       const regionName = [];
+       const cityName = [];
+       for(let item of this.data.dimensionData.rows) {
+         districtName.push({
+           'name': item.dimensionValue,
+           'lengthChild': item.rowsChild && item.rowsChild.length > 0 ? item.rowsChild.length : 0
+         })
+         if(item.rowsChild) {
+           for(let brand of item.rowsChild) {
+             regionName.push({
+               'name': brand.dimensionValue,
+               'lengthChild': brand.rowsChild && brand.rowsChild.length > 0 ? brand.rowsChild.length : 0
+             })
+             if(brand.rowsChild) {
+               for(let city of brand.rowsChild) {
+                 cityName.push({
+                   'name': city.dimensionValue
+                 })
+               }
+             }
+           }
+         }
+       }
+       console.log(districtName)
+       console.log(regionName)
+       console.log(cityName)
+       const result = [
+         districtName,
+         regionName,
+         cityName
+       ]
+       return result
+     }
    }
   },
   methods: {
@@ -271,6 +328,32 @@ export default {
 .row {
   width: 300px;
   text-align: center;
-  border: 1px solid black;
+  outline: 1px solid black;
+}
+
+/*body*/
+.body {
+  /*border: 1px solid greenyellow;*/
+  display: flex;
+  flex-direction: row;
+}
+.block-1 {
+  display: flex;
+  flex-direction: row;
+}
+.districtName {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+}
+.regionName {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+}
+.disReg {
+  outline: 1px solid black;
+  height: 40px;
+  overflow: hidden;
 }
 </style>
