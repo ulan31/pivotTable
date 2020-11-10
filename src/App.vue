@@ -78,6 +78,13 @@ export default {
            "aliasName": "",
            "type": "string",
            "hierarchy": null
+         },
+         {
+           "dimensionId": 1,
+           "name": "Brand name",
+           "aliasName": "",
+           "type": "string",
+           "hierarchy": null
          }
        ],
        "rowsMeta": [
@@ -113,22 +120,42 @@ export default {
          }
        ],
        "dimensionData": {
-         "columnsLevelCount": 1,
+         "columnsLevelCount": 2,
          "rowsLevelCount": 2,
-         "columnsCount": 2,
-         "rowsCount": 3,
+         "columnsCount": 3,
+         "rowsCount": 4,
          "columns": [
            {
              "dimensionId": 0,
              "coordinate": 0,
              "dimensionValue": "Италия",
-             "columnsChild": null
+             "columnsChild":[
+               {
+                 "dimensionId": 1,
+                 "coordinate": 0,
+                 "dimensionValue": "Бренд 2",
+                 "columnsChild": null
+               }
+             ]
            },
            {
              "dimensionId": 0,
              "coordinate": 1,
              "dimensionValue": "Россия",
-             "columnsChild": null
+             "columnsChild":[
+               {
+                 "dimensionId": 1,
+                 "coordinate": 0,
+                 "dimensionValue": "Бренд 1",
+                 "columnsChild": null
+               },
+               {
+                 "dimensionId": 1,
+                 "coordinate": 1,
+                 "dimensionValue": "Бренд 3",
+                 "columnsChild": null
+               }
+             ]
            }
          ],
          "rows": [
@@ -141,6 +168,12 @@ export default {
                  "dimensionId": 1,
                  "coordinate": 0,
                  "dimensionValue": "Амурская область",
+                 "rowsChild": null
+               },
+               {
+                 "dimensionId": 1,
+                 "coordinate": 1,
+                 "dimensionValue": "Еврейская область",
                  "rowsChild": null
                }
              ]
@@ -172,15 +205,23 @@ export default {
            "measureValues": [
              [
                3,
-               8
+               8,
+               9
              ],
              [
                5,
-               6
+               6,
+               8
              ],
              [
-               7,
-               89
+               15,
+               16,
+               18
+             ],
+             [
+               19,
+               20,
+               21
              ]
            ]
          },
@@ -189,15 +230,23 @@ export default {
            "measureValues": [
              [
                30,
-               40
+               40,
+               50
              ],
              [
                60,
-               60
+               70,
+               80
              ],
              [
-               73,
-               64
+               90,
+               140,
+               150
+             ],
+             [
+               160,
+               170,
+               180
              ]
            ]
          }
@@ -265,12 +314,13 @@ export default {
      }
    },
    measureData() {
-     const result = []
-     const measure1 = this.data.measuresData[0].measureValues
-     const measure2 = this.data.measuresData[1].measureValues
-     console.log('measure1', measure1)
-     console.log('measure2', measure2)
-     if(measure1 || measure2) {
+     console.log('da')
+     if(this.data.measuresData[0] && this.data.measuresData[0].measureValues && this.data.measuresData[1] && this.data.measuresData[1].measureValues) {
+       const result = []
+       const measure1 = this.data.measuresData[0].measureValues
+       const measure2 = this.data.measuresData[1].measureValues
+       console.log('measure1', measure1)
+       console.log('measure2', measure2)
        for(let i=0; i < measure1.length; i++) {
          for(let j=0; j< measure1[i].length; j++) {
            console.log('j', j, 'mes1', measure1[i][j], 'mes2', measure2[i][j])
@@ -287,6 +337,45 @@ export default {
        return sum
      }
 
+     if(this.data.measuresData[0] && this.data.measuresData[0].measureValues) {
+       const result = []
+       const measure1 = this.data.measuresData[0].measureValues
+       for(let i=0; i < measure1.length; i++) {
+         for(let j=0; j< measure1[i].length; j++) {
+
+           result.push(measure1[i][j], '')
+         }
+       }
+       const sum = []
+       //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
+       const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
+       for(let k=0; k < Math.ceil(result.length/row); k++) {
+         sum[k] = result.slice((k*row), (k*row) + row)
+       }
+       console.log('sum', sum)
+       return sum
+
+
+
+     }
+     if(this.data.measuresData[1] && this.data.measuresData[1].measureValues) {
+       const result = []
+       const measure1 = this.data.measuresData[1].measureValues
+       for(let i=0; i < measure1.length; i++) {
+         for(let j=0; j< measure1[i].length; j++) {
+
+           result.push(measure1[i][j], '')
+         }
+       }
+       const sum = []
+       //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
+       const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
+       for(let k=0; k < Math.ceil(result.length/row); k++) {
+         sum[k] = result.slice((k*row), (k*row) + row)
+       }
+       console.log('sum', sum)
+       return sum
+     }
    },
   },
 }
