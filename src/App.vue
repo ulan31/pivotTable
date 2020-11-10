@@ -17,14 +17,14 @@
     <div class="body">
       <div class="block-1">
         <div v-if="districtRegionName[0].length > 0" :style="{width: districtRegionName[2].length > 0 ? 100 + 'px' : 150 + 'px' }" class="districtName">
-          <div class="disReg">District Name</div>
+          <div class="disReg sub">District Name</div>
           <div v-for="dist in districtRegionName[0]">
             <div v-if="districtRegionName[2].length > 0" :style="{height: dist.lengthChild > 0 ? dist.lengthChild *80 + 'px' : 80 + 'px' }" class="disReg">{{dist.name}}</div>
             <div v-else :style="{height: dist.lengthChild > 0 ? dist.lengthChild *40 + 'px' : 40 + 'px' }" class="disReg">{{dist.name}}</div>
           </div>
         </div>
         <div :style="{width: districtRegionName[2].length > 0 ? 100 + 'px' : 150 + 'px' }" v-if="districtRegionName[1].length > 0" class="regionName">
-          <div class="disReg">Region Name</div>
+          <div class="disReg sub">Region Name</div>
           <div v-for="region in districtRegionName[1]">
             <div v-if="districtRegionName[2].length > 0" :style="{height: region.lengthChild > 0 ? region.lengthChild *40 + 'px' : 40 + 'px' }" class="disReg">{{region.name}}</div>
             <div v-else class="disReg">{{region.name}}</div>
@@ -41,7 +41,7 @@
       <div class="block-2">
 
         <div style="height: 40px" class="block-2-row" v-for="row in 1">
-          <div style="width: 149px" class="block-2-column" v-for="(column, key) in countryName[1].length > 0 ? countryName[1].length *2 : countryName[0].length *2">
+          <div style="width: 149px" class="sub block-2-column" v-for="(column, key) in countryName[1].length > 0 ? countryName[1].length *2 : countryName[0].length *2">
             <template v-if="key%2 === 0">
               Sum of Metric 1
             </template>
@@ -101,6 +101,13 @@ export default {
            "aliasName": "",
            "type": "string",
            "hierarchy": null
+         },
+         {
+           "dimensionId": 2,
+           "name": "City name",
+           "aliasName": "",
+           "type": "string",
+           "hierarchy": null
          }
        ],
        "measureMetas": [
@@ -110,20 +117,13 @@ export default {
            "alias": "",
            "aggType": "sum",
            "type": "number"
-         },
-         {
-           "measureId": 1,
-           "name": "Metric 2",
-           "alias": "",
-           "aggType": "sum",
-           "type": "number"
          }
        ],
        "dimensionData": {
          "columnsLevelCount": 2,
-         "rowsLevelCount": 2,
+         "rowsLevelCount": 3,
          "columnsCount": 3,
-         "rowsCount": 4,
+         "rowsCount": 9,
          "columns": [
            {
              "dimensionId": 0,
@@ -168,13 +168,39 @@ export default {
                  "dimensionId": 1,
                  "coordinate": 0,
                  "dimensionValue": "Амурская область",
-                 "rowsChild": null
+                 "rowsChild": [
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 0,
+                     "dimensionValue": "Благовещенск",
+                     "rowsChild": null
+                   },
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 1,
+                     "dimensionValue": "Белогорск",
+                     "rowsChild": null
+                   }
+                 ]
                },
                {
                  "dimensionId": 1,
                  "coordinate": 1,
                  "dimensionValue": "Еврейская область",
-                 "rowsChild": null
+                 "rowsChild": [
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 0,
+                     "dimensionValue": "Биробиджан",
+                     "rowsChild": null
+                   },
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 1,
+                     "dimensionValue": "Облучье",
+                     "rowsChild": null
+                   }
+                 ]
                }
              ]
            },
@@ -187,13 +213,45 @@ export default {
                  "dimensionId": 1,
                  "coordinate": 0,
                  "dimensionValue": "Кировская область",
-                 "rowsChild": null
+                 "rowsChild": [
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 0,
+                     "dimensionValue": "Киров",
+                     "rowsChild": null
+                   },
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 1,
+                     "dimensionValue": "Орлов",
+                     "rowsChild": null
+                   }
+                 ]
                },
                {
                  "dimensionId": 1,
                  "coordinate": 1,
                  "dimensionValue": "Нижегордская область",
-                 "rowsChild": null
+                 "rowsChild": [
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 0,
+                     "dimensionValue": "Бор",
+                     "rowsChild": null
+                   },
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 1,
+                     "dimensionValue": "Арзамас",
+                     "rowsChild": null
+                   },
+                   {
+                     "dimensionId": 2,
+                     "coordinate": 2,
+                     "dimensionValue": "Нижний Новгород",
+                     "rowsChild": null
+                   }
+                 ]
                }
              ]
            }
@@ -204,52 +262,53 @@ export default {
            "measureId": 0,
            "measureValues": [
              [
-               3,
+               1,
+               2,
+               3
+             ],
+             [
+               4,
+               5,
+               6
+             ],
+             [
+               7,
                8,
                9
              ],
              [
-               5,
-               6,
-               8
+               10,
+               11,
+               12
              ],
              [
-               15,
+               13,
+               14,
+               15
+             ],
+             [
                16,
+               17,
                18
              ],
              [
                19,
                20,
                21
-             ]
-           ]
-         },
-         {
-           "measureId": 1,
-           "measureValues": [
-             [
-               30,
-               40,
-               50
              ],
              [
-               60,
-               70,
-               80
+               22,
+               23,
+               24
              ],
              [
-               90,
-               140,
-               150
-             ],
-             [
-               160,
-               170,
-               180
+               25,
+               26,
+               27
              ]
            ]
          }
+
        ]
      }
     }
@@ -408,6 +467,7 @@ export default {
   width: 300px;
   text-align: center;
   outline: 1px solid black;
+  background-color: darkturquoise;
 }
 
 /*body*/
@@ -434,6 +494,11 @@ export default {
   outline: 1px solid black;
   height: 40px;
   overflow: hidden;
+
+}
+
+.sub {
+  /*background-color: paleturquoise;*/
 }
 
 /*measare*/
@@ -452,6 +517,7 @@ export default {
   /*outline: 1px solid darkblue;*/
   border-right: 1px solid black;
   text-align: center;
+  font-weight: bold;
 }
 
 
