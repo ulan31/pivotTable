@@ -15,13 +15,12 @@
       </div>
     </div>
     <div class="body">
-      <div  class="block-1">
+      <div class="block-1">
         <div v-if="districtRegionName[0].length > 0" :style="{width: districtRegionName[2].length > 0 ? 100 + 'px' : 150 + 'px' }" class="districtName">
           <div class="disReg">District Name</div>
           <div v-for="dist in districtRegionName[0]">
             <div v-if="districtRegionName[2].length > 0" :style="{height: dist.lengthChild > 0 ? dist.lengthChild *80 + 'px' : 80 + 'px' }" class="disReg">{{dist.name}}</div>
             <div v-else :style="{height: dist.lengthChild > 0 ? dist.lengthChild *40 + 'px' : 40 + 'px' }" class="disReg">{{dist.name}}</div>
-
           </div>
         </div>
         <div :style="{width: districtRegionName[2].length > 0 ? 100 + 'px' : 150 + 'px' }" v-if="districtRegionName[1].length > 0" class="regionName">
@@ -37,6 +36,20 @@
             <div class="disReg">{{city.name}}</div>
           </div>
         </div>
+      </div>
+
+      <div class="block-2">
+        {{measureData}}
+        <div style="height: 40px" v-for="row in districtRegionName[2].length > 0 ? districtRegionName[2].length : districtRegionName[1].length" class="block-2-row">
+          <template  v-if="countryName[1].length > 0">
+            <!--         если есть бренд-->
+            <div style="width: 149px" v-for="column in countryName[1].length *2" class="block-2-column">1</div>
+          </template>
+          <template v-else>
+            <div  style="width: 149px" v-for="column in countryName[0].length *2" class="block-2-column">1</div>
+          </template>
+        </div>
+
       </div>
     </div>
   </div>
@@ -249,8 +262,9 @@ export default {
           }
         }
       }
-      // console.log(countryName)
-      // console.log(brandName)
+      console.log('header----')
+      console.log('countryName', countryName)
+      console.log('brandName', brandName)
       const result = [
         countryName,
         brandName
@@ -284,9 +298,10 @@ export default {
            }
          }
        }
-       console.log(districtName)
-       console.log(regionName)
-       console.log(cityName)
+       console.log('--------')
+       console.log('districtName', districtName)
+       console.log('regionName', regionName)
+       console.log('cityName', cityName)
        const result = [
          districtName,
          regionName,
@@ -294,6 +309,20 @@ export default {
        ]
        return result
      }
+   },
+   measureData() {
+     const result = []
+     const measure = this.data.measuresData
+     const measure1 = this.data.measuresData[0].measureValues
+     const measure2 = this.data.measuresData[1].measureValues
+     console.log(measure)
+     for(let item in measure1) {
+       for(let item1 in item) {
+         result.push([measure1[item[item1]], measure2[item[item1]]])
+       }
+
+     }
+     console.log(result)
    }
   },
   methods: {
@@ -356,4 +385,24 @@ export default {
   height: 40px;
   overflow: hidden;
 }
+
+/*measare*/
+.block-2 {
+  /*display: flex;*/
+  /*flex-direction: row;*/
+}
+.block-2-row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid black;
+}
+.block-2-column {
+  display: flex;
+  flex-direction: column;
+  /*outline: 1px solid darkblue;*/
+  border-right: 1px solid black;
+  text-align: center;
+}
+
+
 </style>
