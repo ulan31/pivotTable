@@ -39,17 +39,27 @@
       </div>
 
       <div class="block-2">
-        {{measureData}}
-        <div style="height: 40px" v-for="row in districtRegionName[2].length > 0 ? districtRegionName[2].length : districtRegionName[1].length" class="block-2-row">
+
+        <div style="height: 40px" class="block-2-row" v-for="row in 1">
+          <div style="width: 149px" class="block-2-column" v-for="(column, key) in countryName[1].length > 0 ? countryName[1].length *2 : countryName[0].length *2">
+            <template v-if="key%2 === 0">
+              Sum of Metric 1
+            </template>
+            <template v-else>
+              Sum of Metric 2
+            </template>
+          </div>
+        </div>
+
+        <div style="height: 40px" v-for="(row, keyRow) in districtRegionName[2].length > 0 ? districtRegionName[2].length : districtRegionName[1].length" class="block-2-row">
           <template  v-if="countryName[1].length > 0">
             <!--         если есть бренд-->
-            <div style="width: 149px" v-for="column in countryName[1].length *2" class="block-2-column">1</div>
+            <div style="width: 149px" v-for="(column, key) in countryName[1].length *2" class="block-2-column">{{measureData1[keyRow][key]}}</div>
           </template>
           <template v-else>
             <div  style="width: 149px" v-for="column in countryName[0].length *2" class="block-2-column">1</div>
           </template>
         </div>
-
       </div>
     </div>
   </div>
@@ -65,13 +75,6 @@ export default {
          {
            "dimensionId": 0,
            "name": "Country name",
-           "aliasName": "",
-           "type": "string",
-           "hierarchy": null
-         },
-         {
-           "dimensionId": 1,
-           "name": "Brand name",
            "aliasName": "",
            "type": "string",
            "hierarchy": null
@@ -110,42 +113,22 @@ export default {
          }
        ],
        "dimensionData": {
-         "columnsLevelCount": 2,
+         "columnsLevelCount": 1,
          "rowsLevelCount": 2,
-         "columnsCount": 3,
-         "rowsCount": 4,
+         "columnsCount": 2,
+         "rowsCount": 3,
          "columns": [
            {
              "dimensionId": 0,
              "coordinate": 0,
              "dimensionValue": "Италия",
-             "columnsChild":[
-               {
-                 "dimensionId": 1,
-                 "coordinate": 0,
-                 "dimensionValue": "Бренд 2",
-                 "columnsChild": null
-               }
-             ]
+             "columnsChild": null
            },
            {
              "dimensionId": 0,
              "coordinate": 1,
              "dimensionValue": "Россия",
-             "columnsChild":[
-               {
-                 "dimensionId": 1,
-                 "coordinate": 0,
-                 "dimensionValue": "Бренд 1",
-                 "columnsChild": null
-               },
-               {
-                 "dimensionId": 1,
-                 "coordinate": 1,
-                 "dimensionValue": "Бренд 3",
-                 "columnsChild": null
-               }
-             ]
+             "columnsChild": null
            }
          ],
          "rows": [
@@ -158,12 +141,6 @@ export default {
                  "dimensionId": 1,
                  "coordinate": 0,
                  "dimensionValue": "Амурская область",
-                 "rowsChild": null
-               },
-               {
-                 "dimensionId": 1,
-                 "coordinate": 1,
-                 "dimensionValue": "Еврейская область",
                  "rowsChild": null
                }
              ]
@@ -195,23 +172,15 @@ export default {
            "measureValues": [
              [
                3,
-               8,
-               9
-             ],
-             [
-               5,
-               6,
                8
              ],
              [
-               15,
-               16,
-               18
+               5,
+               6
              ],
              [
-               19,
-               20,
-               21
+               7,
+               89
              ]
            ]
          },
@@ -220,23 +189,15 @@ export default {
            "measureValues": [
              [
                30,
-               40,
-               50
+               40
              ],
              [
                60,
-               70,
-               80
+               60
              ],
              [
-               90,
-               140,
-               150
-             ],
-             [
-               160,
-               170,
-               180
+               73,
+               64
              ]
            ]
          }
@@ -310,24 +271,25 @@ export default {
        return result
      }
    },
-   measureData() {
+   measureData1() {
      const result = []
-     const measure = this.data.measuresData
      const measure1 = this.data.measuresData[0].measureValues
      const measure2 = this.data.measuresData[1].measureValues
-     console.log(measure)
-     for(let item in measure1) {
-       for(let item1 in item) {
-         result.push([measure1[item[item1]], measure2[item[item1]]])
+     for(let i=0; i < measure1.length; i++) {
+       for(let j=0; j< measure1[i].length; j++) {
+         console.log('j', j, 'mes1', measure1[i][j], 'mes2', measure2[i][j])
+         result.push(measure1[i][j], measure2[i][j])
        }
-
      }
-     console.log(result)
-   }
+     const sum = []
+     //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
+     const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
+     for(let k=0; k < Math.ceil(result.length/row); k++) {
+       sum[k] = result.slice((k*row), (k*row) + row)
+     }
+     return sum
+   },
   },
-  methods: {
-
-  }
 }
 </script>
 
