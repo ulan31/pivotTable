@@ -54,10 +54,10 @@
         <div style="height: 40px" v-for="(row, keyRow) in districtRegionName[2].length > 0 ? districtRegionName[2].length : districtRegionName[1].length" class="block-2-row">
           <template  v-if="countryName[1].length > 0">
             <!--         если есть бренд-->
-            <div style="width: 149px" v-for="(column, key) in countryName[1].length *2" class="block-2-column">{{measureData1[keyRow][key]}}</div>
+            <div style="width: 149px" v-for="(column, key) in countryName[1].length *2" class="block-2-column">{{measureData[keyRow][key]}}</div>
           </template>
           <template v-else>
-            <div  style="width: 149px" v-for="column in countryName[0].length *2" class="block-2-column">1</div>
+            <div  style="width: 149px" v-for="(column, key) in countryName[0].length *2" class="block-2-column">{{measureData[keyRow][key]}}</div>
           </template>
         </div>
       </div>
@@ -223,9 +223,6 @@ export default {
           }
         }
       }
-      console.log('header----')
-      console.log('countryName', countryName)
-      console.log('brandName', brandName)
       const result = [
         countryName,
         brandName
@@ -259,10 +256,6 @@ export default {
            }
          }
        }
-       console.log('--------')
-       console.log('districtName', districtName)
-       console.log('regionName', regionName)
-       console.log('cityName', cityName)
        const result = [
          districtName,
          regionName,
@@ -271,23 +264,29 @@ export default {
        return result
      }
    },
-   measureData1() {
+   measureData() {
      const result = []
      const measure1 = this.data.measuresData[0].measureValues
      const measure2 = this.data.measuresData[1].measureValues
-     for(let i=0; i < measure1.length; i++) {
-       for(let j=0; j< measure1[i].length; j++) {
-         console.log('j', j, 'mes1', measure1[i][j], 'mes2', measure2[i][j])
-         result.push(measure1[i][j], measure2[i][j])
+     console.log('measure1', measure1)
+     console.log('measure2', measure2)
+     if(measure1 || measure2) {
+       for(let i=0; i < measure1.length; i++) {
+         for(let j=0; j< measure1[i].length; j++) {
+           console.log('j', j, 'mes1', measure1[i][j], 'mes2', measure2[i][j])
+           result.push(measure1[i][j], measure2[i][j])
+         }
        }
+       const sum = []
+       //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
+       const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
+       for(let k=0; k < Math.ceil(result.length/row); k++) {
+         sum[k] = result.slice((k*row), (k*row) + row)
+       }
+       console.log('sum', sum)
+       return sum
      }
-     const sum = []
-     //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
-     const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
-     for(let k=0; k < Math.ceil(result.length/row); k++) {
-       sum[k] = result.slice((k*row), (k*row) + row)
-     }
-     return sum
+
    },
   },
 }
