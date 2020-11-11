@@ -37,9 +37,7 @@
           </div>
         </div>
       </div>
-
       <div class="block-2">
-
         <div style="height: 40px" class="block-2-row" v-for="row in 1">
           <div style="width: 149px" class="sub block-2-column" v-for="(column, key) in countryName[1].length > 0 ? countryName[1].length *2 : countryName[0].length *2">
             <template v-if="key%2 === 0">
@@ -50,10 +48,8 @@
             </template>
           </div>
         </div>
-
         <div style="height: 40px" v-for="(row, keyRow) in districtRegionName[2].length > 0 ? districtRegionName[2].length : districtRegionName[1].length" class="block-2-row">
           <template  v-if="countryName[1].length > 0">
-            <!--         если есть бренд-->
             <div style="width: 149px" v-for="(column, key) in countryName[1].length *2" class="block-2-column">{{measureData[keyRow][key]}}</div>
           </template>
           <template v-else>
@@ -101,13 +97,6 @@ export default {
            "aliasName": "",
            "type": "string",
            "hierarchy": null
-         },
-         {
-           "dimensionId": 2,
-           "name": "City name",
-           "aliasName": "",
-           "type": "string",
-           "hierarchy": null
          }
        ],
        "measureMetas": [
@@ -117,13 +106,20 @@ export default {
            "alias": "",
            "aggType": "sum",
            "type": "number"
+         },
+         {
+           "measureId": 1,
+           "name": "Metric 2",
+           "alias": "",
+           "aggType": "sum",
+           "type": "number"
          }
        ],
        "dimensionData": {
          "columnsLevelCount": 2,
-         "rowsLevelCount": 3,
+         "rowsLevelCount": 2,
          "columnsCount": 3,
-         "rowsCount": 9,
+         "rowsCount": 4,
          "columns": [
            {
              "dimensionId": 0,
@@ -168,39 +164,13 @@ export default {
                  "dimensionId": 1,
                  "coordinate": 0,
                  "dimensionValue": "Амурская область",
-                 "rowsChild": [
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 0,
-                     "dimensionValue": "Благовещенск",
-                     "rowsChild": null
-                   },
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 1,
-                     "dimensionValue": "Белогорск",
-                     "rowsChild": null
-                   }
-                 ]
+                 "rowsChild": null
                },
                {
                  "dimensionId": 1,
                  "coordinate": 1,
                  "dimensionValue": "Еврейская область",
-                 "rowsChild": [
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 0,
-                     "dimensionValue": "Биробиджан",
-                     "rowsChild": null
-                   },
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 1,
-                     "dimensionValue": "Облучье",
-                     "rowsChild": null
-                   }
-                 ]
+                 "rowsChild": null
                }
              ]
            },
@@ -213,45 +183,13 @@ export default {
                  "dimensionId": 1,
                  "coordinate": 0,
                  "dimensionValue": "Кировская область",
-                 "rowsChild": [
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 0,
-                     "dimensionValue": "Киров",
-                     "rowsChild": null
-                   },
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 1,
-                     "dimensionValue": "Орлов",
-                     "rowsChild": null
-                   }
-                 ]
+                 "rowsChild": null
                },
                {
                  "dimensionId": 1,
                  "coordinate": 1,
                  "dimensionValue": "Нижегордская область",
-                 "rowsChild": [
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 0,
-                     "dimensionValue": "Бор",
-                     "rowsChild": null
-                   },
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 1,
-                     "dimensionValue": "Арзамас",
-                     "rowsChild": null
-                   },
-                   {
-                     "dimensionId": 2,
-                     "coordinate": 2,
-                     "dimensionValue": "Нижний Новгород",
-                     "rowsChild": null
-                   }
-                 ]
+                 "rowsChild": null
                }
              ]
            }
@@ -262,53 +200,52 @@ export default {
            "measureId": 0,
            "measureValues": [
              [
-               1,
-               2,
-               3
-             ],
-             [
-               4,
-               5,
-               6
-             ],
-             [
-               7,
+               3,
                8,
                9
              ],
              [
-               10,
-               11,
-               12
+               5,
+               6,
+               8
              ],
              [
-               13,
-               14,
-               15
-             ],
-             [
+               15,
                16,
-               17,
                18
              ],
              [
                19,
                20,
                21
+             ]
+           ]
+         },
+         {
+           "measureId": 1,
+           "measureValues": [
+             [
+               30,
+               40,
+               50
              ],
              [
-               22,
-               23,
-               24
+               60,
+               70,
+               80
              ],
              [
-               25,
-               26,
-               27
+               90,
+               140,
+               150
+             ],
+             [
+               160,
+               170,
+               180
              ]
            ]
          }
-
        ]
      }
     }
@@ -373,66 +310,50 @@ export default {
      }
    },
    measureData() {
-     console.log('da')
      if(this.data.measuresData[0] && this.data.measuresData[0].measureValues && this.data.measuresData[1] && this.data.measuresData[1].measureValues) {
        const result = []
        const measure1 = this.data.measuresData[0].measureValues
        const measure2 = this.data.measuresData[1].measureValues
-       console.log('measure1', measure1)
-       console.log('measure2', measure2)
        for(let i=0; i < measure1.length; i++) {
          for(let j=0; j< measure1[i].length; j++) {
-           console.log('j', j, 'mes1', measure1[i][j], 'mes2', measure2[i][j])
            result.push(measure1[i][j], measure2[i][j])
          }
        }
        const sum = []
-       //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
        const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
        for(let k=0; k < Math.ceil(result.length/row); k++) {
          sum[k] = result.slice((k*row), (k*row) + row)
        }
-       console.log('sum', sum)
        return sum
      }
-
      if(this.data.measuresData[0] && this.data.measuresData[0].measureValues) {
        const result = []
        const measure1 = this.data.measuresData[0].measureValues
        for(let i=0; i < measure1.length; i++) {
          for(let j=0; j< measure1[i].length; j++) {
-
            result.push(measure1[i][j], '')
          }
        }
        const sum = []
-       //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
        const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
        for(let k=0; k < Math.ceil(result.length/row); k++) {
          sum[k] = result.slice((k*row), (k*row) + row)
        }
-       console.log('sum', sum)
        return sum
-
-
-
      }
      if(this.data.measuresData[1] && this.data.measuresData[1].measureValues) {
        const result = []
        const measure1 = this.data.measuresData[1].measureValues
        for(let i=0; i < measure1.length; i++) {
          for(let j=0; j< measure1[i].length; j++) {
-
            result.push(measure1[i][j], '')
          }
        }
        const sum = []
-       //const row = this.districtRegionName[2].length > 0 ? this.districtRegionName[2].length : this.districtRegionName[1].length
        const row = this.countryName[1].length > 0 ? this.countryName[1].length *2 : this.countryName[0].length *2
        for(let k=0; k < Math.ceil(result.length/row); k++) {
          sum[k] = result.slice((k*row), (k*row) + row)
        }
-       console.log('sum', sum)
        return sum
      }
    },
